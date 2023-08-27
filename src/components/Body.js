@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import Shimmer from "./Shimmer";
 
 const Body = () => {
-
+    // whenever state variable update, react triggers a reconciliation cycle(re-renders the component) 
     const [fixedRestaurantObject, setFixedRestaurantObject] = useState();
 
     const [ListOfRestaurants, setListOfRestaurants] = useState();
@@ -22,10 +22,14 @@ const Body = () => {
         // return restaurantObjectF
         setListOfRestaurants(filteredList);
     }
-
+    //if no dependency Arry => useEffect is called on every render of its component
+    //if dependency array is empty = []   =>  useEffect is called on initial render(at once),, after component re-render useEffect is not called again and again
+    //if dependency array is[btnnName] = > useEffect is called everytime when btnName is updated 
     useEffect(() => {
         fetchData();
-    }, []);
+        // console.log("re rendering ");
+
+    },[]);
     const fetchData = async () => {
         const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.4254486&lng=78.450544&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
         const json = await data.json()
@@ -35,7 +39,6 @@ const Body = () => {
         // console.log(json.data.cards[2].card.card.gridElements.infoWithStyle.restaurants);
 
         setListOfRestaurants(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
-        // console.dir(ListOfRestaurants);
 
 
         // above line indicates to get data from API but its not a good way to fetch data
@@ -46,18 +49,18 @@ const Body = () => {
         //now i can't read the data due to unstructered data found in API
     };
 
-    console.log(fixedRestaurantObject);
-    console.log(ListOfRestaurants)
+    // console.log(fixedRestaurantObject);
+    // console.log(ListOfRestaurants)
 
-   
+
 
     // if (navigator.onLine) {
     //     console.log("online");
     //   } else {
     //     console.log("offline");
     //   }
-      
-// this is conditional rendering
+
+    // this is conditional rendering
     if (ListOfRestaurants == undefined) {
         let count = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
 
@@ -65,9 +68,9 @@ const Body = () => {
             <div className="dflex">
                 {
                     count.map((k) => {
-                        return <Shimmer />
+                        return <Shimmer key={k}/>
                     })
-                 }
+                }
             </div>
         )
     }
@@ -88,7 +91,7 @@ const Body = () => {
                     setListOfRestaurants(ListOfRestaurants);
                     // console.log(setRestaurantObject);
 
-                }}>Top Rated Items</button>
+                }}>Search</button>
             </div>
             <div className="restaurant-container pattern-dots-sm ">
 

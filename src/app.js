@@ -2,6 +2,11 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
+import AboutUs from "./components/AboutUs";
+import ContactUs from "./components/ContactUs";
+import Error from "./components/Error";
+import RestaurantMenu from "./components/RestaurantMenu";
 
 //React Element
 
@@ -54,13 +59,51 @@ const AppLayout = () => {
   return (
     <div className="app">
       <Header />
-      <Body />
+      <Outlet/>
     </div>
   )
 }
+// this createBrowserRouter needs to configure in the form array of objects
+// objects means defining routes
+const appRouter = createBrowserRouter([
+  {
+    path: "/",
+    element: <AppLayout/>,
+   
+    children:[
+      {
+        path:"/",
+        element:<Body/>,
+      },  
+      {
+        path:"/Home",
+        element:<Body/>,
+      },
+      {
+      path:"/AboutUs",
+      element:<AboutUs />,
+    },
+    {
+      path:"/ContactUs",
+      element:<ContactUs/>,
+    },
+   {
+    path:"/Restaurants/:resId",
+    element: <RestaurantMenu/>,
+   },
+   
+  ],
+  
+  errorElement: <Error/>,
 
+  }
 
+ 
+]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<AppLayout />);
+// root.render(<AppLayout />);
+root.render(<RouterProvider router={appRouter}/>); 
+// here we are rendering router configuration , the defined routes and its paths will be rendered if this renders
+
 
