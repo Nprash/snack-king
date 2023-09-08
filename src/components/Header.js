@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   const [btnName, setbtnName] = useState("Login");
-  useEffect(()=>{console.log("useEffect will be called at every render cycle ")})
+  // useEffect(()=>{console.log("useEffect will be called at every render cycle ")})
     return (
       <div className="header">
         <div className="logo-container">

@@ -1,9 +1,9 @@
 import RestaurantCard from "./RestaurantCard";
 import { restaurantObj } from "../UtilityFiles/mockDataAPI"
 import React from "react";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
+import {Link } from "react-router-dom";
 
 const Body = () => {
     // whenever state variable update, react triggers a reconciliation cycle(re-renders the component) 
@@ -31,18 +31,15 @@ const Body = () => {
 
     },[]);
     const fetchData = async () => {
-        const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.4254486&lng=78.450544&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
+        const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.4254486&lng=78.450544")
         const json = await data.json()
 
         setFixedRestaurantObject(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants); // to store listofrestaurants inititally
         // console.dir(json)
         // console.log(json.data.cards[2].card.card.gridElements.infoWithStyle.restaurants);
-
-        setListOfRestaurants(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
-
-
         // above line indicates to get data from API but its not a good way to fetch data
 
+        setListOfRestaurants(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
         //use optional chaining:---
         // setListOfRestaurants(json?.data?.cards[2]?.data?.cards)
 
@@ -93,11 +90,11 @@ const Body = () => {
 
                 }}>Search</button>
             </div>
-            <div className="restaurant-container pattern-dots-sm ">
+            <div className="restaurant-container ">
 
                 {//its an optional chaining "?"
-                    ListOfRestaurants?.map((data) => {
-                        return <RestaurantCard key={data.info.id} resData={data} />
+                    ListOfRestaurants?.map((Mrestaurant) => {
+                        return <Link className="bodycard" key={Mrestaurant.info.id} to={"/Restaurants/"+Mrestaurant.info.id}><RestaurantCard resData={Mrestaurant} /></Link>
                     })
                 }
             </div>
