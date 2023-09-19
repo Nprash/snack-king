@@ -4,6 +4,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import {Link } from "react-router-dom";
+import useOnlineStatus from "../UtilityFiles/useOnlineStatus";
 
 const Body = () => {
     // whenever state variable update, react triggers a reconciliation cycle(re-renders the component) 
@@ -44,6 +45,7 @@ const Body = () => {
         // setListOfRestaurants(json?.data?.cards[2]?.data?.cards)
 
         //now i can't read the data due to unstructered data found in API
+        // console.log(ListOfRestaurants);
     };
 
     // console.log(fixedRestaurantObject);
@@ -58,6 +60,11 @@ const Body = () => {
     //   }
 
     // this is conditional rendering
+    const onlineStatus = useOnlineStatus();
+    if(onlineStatus ===false) return <h1>you are offline, plz check your internet connection</h1>
+
+    // <span>onlineStatus? <span className="green-color">"gree"</span>:<span classname="red-color">"red"</span></span>
+
     if (ListOfRestaurants == undefined) {
         let count = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
 
@@ -71,6 +78,7 @@ const Body = () => {
             </div>
         )
     }
+
 
     // we can add this directly into below return with terinary operator 
 
@@ -87,8 +95,8 @@ const Body = () => {
 
                     setListOfRestaurants(ListOfRestaurants);
                     // console.log(setRestaurantObject);
-
                 }}>Search</button>
+                <span>{onlineStatus? "🟢" : "🔴"}</span>
             </div>
             <div className="restaurant-container ">
 

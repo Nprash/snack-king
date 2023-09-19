@@ -51,6 +51,10 @@ import RestaurantMenu from "./components/RestaurantMenu";
 // };
 
 
+// chunking
+// code splitting
+// dynamic bundling
+//
 
 
 

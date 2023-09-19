@@ -4,12 +4,16 @@ import Menushimmer from "./Menushimmer";
 import { useParams } from "react-router-dom";
 import { Menu_API_2 } from "../UtilityFiles/constants";
 import {CDN_URL} from "../UtilityFiles/constants";
+import useRestaurantMenu from "../UtilityFiles/useRestaurantMenu";
 
 
 const RestaurantMenu = () => {
   const [restInfo, setRestInfo] = useState(null);
   const { resId } = useParams();
-  // console.log(resId);
+  // console.log(resId); see 22 line
+  // im creating custom hooks for fetching restinfo from API , no ned to use useState hook
+  // const restInfo = useRestaurantMenu(resId);
+
 
   useEffect(() => {
     fetchMenu();
@@ -20,7 +24,7 @@ const RestaurantMenu = () => {
     // console.log(data);
     // const data = await fetch("https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=17.4254486&lng=78.450544&restaurantId=344287&catalog_qa=undefined&submitAction=ENTER");
     const json = await data.json();
-    console.log(json);
+    // console.log(json);
     setRestInfo(json.data);
   };
   if (restInfo === null) return <Menushimmer />;
@@ -35,6 +39,8 @@ const RestaurantMenu = () => {
 restInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card
       ?.card;
   // console.log(itemCards);
+  // console.log(restInfo);
+  Object.keys(itemCards).length
   return (
     <div className="menu">
       <div className="area">
@@ -50,7 +56,7 @@ restInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card
 
       <div className="restaurant-intro">
         <div className="restaurant-details">
-          <h1>{name}</h1>
+          <h1>{name} <span className="title-span">{Object.keys(itemCards).length} Items Found in this restaurant</span></h1>
           <p>{cuisines.join(",")}</p>
           <span>{areaName}</span>
         </div>
