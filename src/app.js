@@ -1,4 +1,4 @@
-import React from "react";
+import React, {lazy, Suspense} from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -8,6 +8,7 @@ import ContactUs from "./components/ContactUs";
 import Error from "./components/Error";
 import Cart from "./components/Cart";
 import RestaurantMenu from "./components/RestaurantMenu";
+// import Grocery from "./components/Grocery";
 
 //React Element
 
@@ -50,13 +51,17 @@ import RestaurantMenu from "./components/RestaurantMenu";
 
 // };
 
+// code optimization below seperation of bundle
 
 // chunking
 // code splitting
 // dynamic bundling
-//
+// lazy loading
+// on demading loading
+//dynamic import
 
-
+// lazy() loading for optimization coming from react library
+const Grocery = lazy(()=>import("./components/Grocery"));
 
 
 
@@ -92,6 +97,12 @@ const appRouter = createBrowserRouter([
     {
       path:"/ContactUs",
       element:<ContactUs/>,
+      
+    },
+    {
+      path:"/Grocery",
+      element:<Suspense fallback={<><h1>loading...</h1></>}><Grocery/></Suspense>,
+      errorElement: <Error/>,
       
     },
     {

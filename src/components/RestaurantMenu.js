@@ -42,46 +42,46 @@ restInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card
   // console.log(restInfo);
   Object.keys(itemCards).length
   return (
-    <div className="menu">
-      <div className="area">
-        <div>
-          <span>Home</span>
-          <span>/{city}</span>
-          <span>/{name}</span>
+    <div className="bg-slate-100">
+      <div className="pt-4 flex justify-between m-auto w-3/5 items-center h-16">
+        <div className="items-center font-normal text-[11px] text-slate-500">
+          <span>Home </span>
+          <span>/ {city} </span>
+          <span className="text-slate-600 font-medium"> / {name}</span>
         </div>
         <button>
-          <i className="bi bi-search"></i>
+          <i className="bi bi-search text-[17px] font-bold"></i>
         </button>
       </div>
 
-      <div className="restaurant-intro">
-        <div className="restaurant-details">
-          <h1>{name} <span className="title-span">{Object.keys(itemCards).length} Items Found in this restaurant</span></h1>
-          <p>{cuisines.join(",")}</p>
-          <span>{areaName}</span>
+      <div className="w-3/5 flex justify-between items-center m-auto pt-4 mb-3">
+        <div className="pl-3 w-4/5">
+          <h1 className="font-bold">{name} <span className="font-normal text-[10px] text-slate-400">{Object.keys(itemCards).length} Items Found in this restaurant</span></h1>
+          <p className="font-normal text-slate-600 pt-3 text-sm">{cuisines.join(",")}</p>
+          <span className="font-normal text-slate-600 text-sm">{areaName}</span>
         </div>
-        <div className="for-rating">
-          <div className="span1">
-            <span>
+        <div className="border p-2 rounded-lg shadow-sm">
+          <div className="items-center flex">
+            <span className="text-green-500 font-bold">
               <i className="bi bi-star-fill"></i> {avgRating}
             </span>
           </div>
           <hr style={{ height: "1px", width: "30px", margin: "auto" }} />
-          <div className="sapn2"><span>{totalRatingsString}</span></div>
+          <div className="font-medium text-slate-600 text-sm"><span>{totalRatingsString}</span></div>
         </div>
       </div>
       <div>
-        <p className="notify">
+        <div className="flex w-3/5 m-auto pl-3">
           {/* <i className="bi bi-info-circle-fill"></i> */}
-          <img className="notify-img" src={CDN_URL+expectationNotifiers[0]?.icon?.imageId} alt="image" />
-          <span>{feeDetails.message}</span>
-        </p>
-        <hr className="notify-line" />
+          <img className="w-5 h-5" src={CDN_URL+expectationNotifiers[0]?.icon?.imageId} alt="image" />
+          <span className="pl-2 text-slate-600 text-sm">{feeDetails.message}</span>
+        </div>
+        <hr className="w-3/5 m-auto border-b border-dashed border-gray-300" />
       </div>
 
-      <div className="time-cost">
-        <ul>
-          <li className="first-li">
+      <div className="time-cost w-3/5 flex m-auto pl-2">
+        <ul className="flex w-64 justify-around items-center pt-3">
+          <li className="flex justify-around items-center">
             <svg
               className="RestaurantTimeCost_icon__8UdT4"
               width="18"
@@ -101,9 +101,9 @@ restInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card
                 fill="#3E4152"
               ></path>
             </svg>
-            <span>{sla.slaString}</span>
+            <span className="px-2 font-medium">{sla.slaString}</span>
           </li>
-          <li className="second-li">
+          <li className="second-li flex justify-around items-center">
             <svg
               className="RestaurantTimeCost_icon__8UdT4"
               width="18"
@@ -124,25 +124,26 @@ restInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card
                 fill="#3E4152"
               ></path>
             </svg>
-            <span>{costForTwoMessage}</span>
+            <span className="px-2 font-medium">{costForTwoMessage}</span>
           </li>
         </ul>
       </div>
 
       <div className="submenu">
         {/* <h3>Menu</h3> */}
-        <ul>
+        <ul className="grid grid-rows-1 w-3/5 m-auto">
           {itemCards.map((item) => (
-            <li key={item.card.info.id}>
-              <div className="submenu-sub1">
+            <li key={item.card.info.id} className="my-4">
+              <div className="flex pb-4 justify-between items-center">
                 <div className="submenu-sub2">
                   <div><span>{}</span></div>
                   <div><span>{item.card.info.name}</span></div>
                   <div><span>-Rs.{" "}{item.card.info.price / 100 || item.card.info.defaultPrice / 100}</span></div>
                 </div>
 
-                <div className="map-li-4thdiv"><img className="item-image" src={CDN_URL+item.card.info.imageId} alt="image" /></div>
-              </div><hr className="notify-line" />
+                <div className="w-28 h-24 "><img className="rounded-lg" src={CDN_URL+item.card.info.imageId} alt="image" /></div>
+              </div>
+              <hr className="w-3/5 m-auto border-b border-dashed border-gray-300" />
             </li>
             
           ))}

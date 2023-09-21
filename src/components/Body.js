@@ -84,21 +84,21 @@ const Body = () => {
 
     // ListOfRestaurants.leangth===0 ? <Shimmer /> :     below will be returned
     return ListOfRestaurants == undefined ? <Shimmer /> : (
-        <div className="body">
-            <div className="search">
-                <input type="text" placeholder="Search Something Delicious" value={searchtext} onChange={(e) => {
+        <div className="body  w-full bg-slate-100 p-2">
+            <div className="w-full my-4  flex justify-center">
+                <input className="w-60 mr-3 px-3 py-1 border rounded-full outline-none font-sans font-medium border-spacing-2" type="text" placeholder="Search Something Delicious" value={searchtext} onChange={(e) => {
                     setSearchtext(e.target.value)
                     searchRest(e.target.value, fixedRestaurantObject)
                 }} />
-                <button className="filter-btn" onClick={() => {
+                <button className="w-30 px-4 ml-3 bg-green-200 rounded-full font-sans font-medium" onClick={() => {
 
 
                     setListOfRestaurants(ListOfRestaurants);
                     // console.log(setRestaurantObject);
                 }}>Search</button>
-                <span>{onlineStatus? "🟢" : "🔴"}</span>
+                {/* <span>{onlineStatus? "🟢" : "🔴"}</span> */}
             </div>
-            <div className="restaurant-container ">
+            <div className="flex items-center justify-center flex-wrap p-3 ">
 
                 {//its an optional chaining "?"
                     ListOfRestaurants?.map((Mrestaurant) => {
