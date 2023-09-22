@@ -131,19 +131,19 @@ restInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card
 
       <div className="submenu">
         {/* <h3>Menu</h3> */}
-        <ul className="grid grid-rows-1 w-3/5 m-auto">
+        <ul className="grid grid-rows-1 w-3/5 m-auto mt-3">
           {itemCards.map((item) => (
-            <li key={item.card.info.id} className="my-4">
+            <li key={item.card.info.id} className="my-6">
               <div className="flex pb-4 justify-between items-center">
-                <div className="submenu-sub2">
+                <div className="submenu-sub2 pl-3 w-72">
                   <div><span>{}</span></div>
-                  <div><span>{item.card.info.name}</span></div>
+                  <div className="font-medium"><span>{item.card.info.name}</span></div>
                   <div><span>-Rs.{" "}{item.card.info.price / 100 || item.card.info.defaultPrice / 100}</span></div>
                 </div>
 
                 <div className="w-28 h-24 "><img className="rounded-lg" src={CDN_URL+item.card.info.imageId} alt="image" /></div>
               </div>
-              <hr className="w-3/5 m-auto border-b border-dashed border-gray-300" />
+              <hr className="m-auto border-b border-dashed border-gray-300" />
             </li>
             
           ))}

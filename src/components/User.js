@@ -8,7 +8,7 @@ const [count] = useState(0);
 // },[]);
 
     return(
-        <div className="user-card">
+        <div className="user-card w-5/12 m-auto">
             <p>useState example to use in functional component count={count}</p>
             <h2>Name : {props.Name} </h2>
             <h3>Location:  Hyderabad</h3>

@@ -56,7 +56,7 @@ clearInterval(this.timer);
     // console.log(Name + " Render called");
     
     return (
-      <div className="user-card">
+      <div className="user-card flex justify-around items-center p-3 border rounded-xl shadow-md w-2/5 m-auto">
         {/* <p>useState variables usage in class based component count</p> */}
         {/*  <button
           onClick={() => {
@@ -69,11 +69,11 @@ clearInterval(this.timer);
         >
           Count increase
         </button> */}
-        <img className="avatar-image" src={this.state.userInfo.avatar_url} alt="avatar" />
-        <div className="dot-flex">
-        <h2>Name : {this.state.userInfo.name}</h2>
-        <h3>Location: {this.state.userInfo.location}</h3>
-        <h4>Contact: {this.state.userInfo.Contact}</h4>
+        <img className="w-48 rounded-full shadow-md" src={this.state.userInfo.avatar_url} alt="avatar" />
+        <div className="dot-flex w-2/5">
+        <h2 className="font-medium"> {this.state.userInfo.name}</h2>
+        <h3 className="text-slate-500">Location: {this.state.userInfo.location}</h3>
+        <h4 className="text-slate-500">Contact: {this.state.userInfo.Contact}</h4>
         </div>
         
       </div>
