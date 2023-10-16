@@ -1,10 +1,12 @@
 import RestaurantCard from "./RestaurantCard";
 import { restaurantObj } from "../UtilityFiles/mockDataAPI"
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Shimmer from "./Shimmer";
 import {Link } from "react-router-dom";
 import useOnlineStatus from "../UtilityFiles/useOnlineStatus";
+import Usercontext from "../UtilityFiles/Usercontext";
+
 
 const Body = () => {
     // whenever state variable update, react triggers a reconciliation cycle(re-renders the component) 
@@ -13,6 +15,7 @@ const Body = () => {
     const [ListOfRestaurants, setListOfRestaurants] = useState();
 
     const [searchtext, setSearchtext] = useState();
+    const {user, setUser} = useContext(Usercontext);
 
 
     function searchRest(value, list) {
@@ -79,7 +82,6 @@ const Body = () => {
         )
     }
 
-
     // we can add this directly into below return with terinary operator 
 
     // ListOfRestaurants.leangth===0 ? <Shimmer /> :     below will be returned
@@ -96,13 +98,14 @@ const Body = () => {
                     setListOfRestaurants(ListOfRestaurants);
                     // console.log(setRestaurantObject);
                 }}>Search</button>
+                <input type="text" value={user.name} onChange={e => setUser({name:e.target.value, email:"newemail@gmail.com"})}/>
                 {/* <span>{onlineStatus? "🟢" : "🔴"}</span> */}
             </div>
             <div className="flex items-center justify-center flex-wrap p-3 ">
 
                 {//its an optional chaining "?"
                     ListOfRestaurants?.map((Mrestaurant) => {
-                        return <Link className="bodycard" key={Mrestaurant.info.id} to={"/Restaurants/"+Mrestaurant.info.id}><RestaurantCard resData={Mrestaurant} /></Link>
+                        return <Link className="bodycard" key={Mrestaurant.info.id} to={"/Restaurants/"+Mrestaurant.info.id}><RestaurantCard resData={Mrestaurant} user={user}/></Link>
                     })
                 }
             </div>

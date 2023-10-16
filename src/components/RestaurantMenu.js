@@ -143,7 +143,7 @@ restInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card
 
                 <div className="w-28 h-24 "><img className="rounded-lg" src={CDN_URL+item.card.info.imageId} alt="image" /></div>
               </div>
-              <hr className="m-auto border-b border-dashed border-gray-300" />
+              <hr className="m-auto border-t-2 border-gray-300" />
             </li>
             
           ))}

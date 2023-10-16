@@ -7,7 +7,8 @@ const stylecard = {
 const RestaurantCard = (props) => {
     //  console.log(props?.info?.name) ;
     const { cloudinaryImageId, name, cuisines, avgRating, costForTwo, deliveryTime,availability } = props.resData.info;
-  
+    // const {name2, email} = props.user
+    // console.log(props.user.name2, props.user.email)
     return (
       <div className="w-80 h-[300px] p-2 grid grid-cols-1 justify-center items-center" > {/*// inline style added here*/}
         <div className="w-64 left-3">
@@ -23,7 +24,8 @@ const RestaurantCard = (props) => {
           {/* <p>{costForTwo}</p>
           <p>delivery time {deliveryTime} minutes estimated</p> */}
         </div>
-  
+          {/* <p>{name2}</p> */}
+          {/* <span>{props.user.name2}, {props.user.email}</span> */}
       </div>
     )
   
@@ -31,3 +33,5 @@ const RestaurantCard = (props) => {
   }
 
   export default RestaurantCard;
+
+  // we didi props drilling here sending props from applayout to here in this component

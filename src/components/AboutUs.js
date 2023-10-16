@@ -1,6 +1,7 @@
 import React from "react";
 import User from "./User";
 import UserClass from "./UserClass";
+import Usercontext from "../UtilityFiles/Usercontext";
 
 
 class AboutUs extends React.Component{
@@ -20,8 +21,15 @@ class AboutUs extends React.Component{
     return (
       <div>
         <h1>AboutUs</h1>
-        <UserClass Name={"1st-child biden"} Location={"US"} Email={"contact@gmail.com"}/>
+        <Usercontext.Consumer>
+          {({user})=><h4 className="font-bold"> these are testing useContext hook which enables to staore data and able to use wherever we want in our App {user.name}  =====  {user.email}</h4>
+          
+          }
+        </Usercontext.Consumer>
+        
+        {/* <UserClass Name={"1st-child biden"} Location={"US"} Email={"contact@gmail.com"}/> */}
         <User/>
+        
       </div>
     );
   }

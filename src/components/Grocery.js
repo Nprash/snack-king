@@ -1,7 +1,11 @@
+import React from 'react'
+
 const Grocery = () => {
-    return(
-        <h1>Our grocery Online store, have a lot of child components</h1>
-    )
+  return (
+    <div>
+      <h2>Grocery component</h2>
+    </div>
+  )
 }
 
-export default Grocery;
+export default Grocery

@@ -1,4 +1,4 @@
-import React, {lazy, Suspense} from "react";
+import React, {lazy, Suspense, useState} from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -8,6 +8,8 @@ import ContactUs from "./components/ContactUs";
 import Error from "./components/Error";
 import Cart from "./components/Cart";
 import RestaurantMenu from "./components/RestaurantMenu";
+import Footer from "./components/Footer"
+import Usercontext from "./UtilityFiles/Usercontext";
 // import Grocery from "./components/Grocery";
 
 //React Element
@@ -66,11 +68,20 @@ const Grocery = lazy(()=>import("./components/Grocery"));
 
 
 const AppLayout = () => {
+
+  const [user_, setUser_] = useState({name:"Nimmana Prasanth",Email: "developer2023@gmail.com",});
+  
   return (
+    <>
+    <Usercontext.Provider value={{user:user_,
+    setUser:setUser_}}> 
     <div className="app">
       <Header />
       <Outlet/>
+      <Footer />
     </div>
+    </Usercontext.Provider>
+    </>
   )
 }
 // this createBrowserRouter needs to configure in the form array of objects
@@ -87,7 +98,10 @@ const appRouter = createBrowserRouter([
       },  
       {
         path:"/Home",
-        element:<Body/>,
+        element:<Body user={{
+          name2:"Namaste React",
+          email: "namaste@gmail.com",
+        }}/>,
       },
       {
       path:"/AboutUs",
@@ -96,6 +110,7 @@ const appRouter = createBrowserRouter([
     },
     {
       path:"/ContactUs",
+      errorElement: <Error/>,
       element:<ContactUs/>,
       
     },
