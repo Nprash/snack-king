@@ -20,7 +20,7 @@ const Body = () => {
 
     function searchRest(value, list) {
         let filteredList = list.filter((resData) => {
-            // console.log(resData.info.name);
+            console.log(resData.info.name);
             return resData.info.name.toLowerCase().includes(value.toLowerCase())
         });
         // return restaurantObjectF
@@ -37,13 +37,16 @@ const Body = () => {
     const fetchData = async () => {
         const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.4254486&lng=78.450544")
         const json = await data.json()
+        console.log(json)
 
-        setFixedRestaurantObject(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants); // to store listofrestaurants inititally
-        // console.dir(json)
+        setFixedRestaurantObject(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants); // to store listofrestaurants inititally
+        console.log(fixedRestaurantObject)
         // console.log(json.data.cards[2].card.card.gridElements.infoWithStyle.restaurants);
         // above line indicates to get data from API but its not a good way to fetch data
 
-        setListOfRestaurants(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+        setListOfRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+        console.log(ListOfRestaurants)
+
         //use optional chaining:---
         // setListOfRestaurants(json?.data?.cards[2]?.data?.cards)
 
@@ -85,7 +88,7 @@ const Body = () => {
     // we can add this directly into below return with terinary operator 
 
     // ListOfRestaurants.leangth===0 ? <Shimmer /> :     below will be returned
-    return ListOfRestaurants == undefined ? <Shimmer /> : (
+    return ListOfRestaurants == undefined ? null : (
         <div className="body  w-full bg-slate-100 p-2">
             <div className="w-full my-4  flex justify-center">
                 <input className="w-60 mr-3 px-3 py-1 border rounded-full outline-none font-sans font-medium border-spacing-2" type="text" placeholder="Search Something Delicious" value={searchtext} onChange={(e) => {
@@ -98,6 +101,7 @@ const Body = () => {
                     setListOfRestaurants(ListOfRestaurants);
                     // console.log(setRestaurantObject);
                 }}>Search</button>
+                
                 <input type="text" value={user.name} onChange={e => setUser({name:e.target.value, email:"newemail@gmail.com"})}/>
                 {/* <span>{onlineStatus? "🟢" : "🔴"}</span> */}
             </div>

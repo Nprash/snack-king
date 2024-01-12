@@ -73,18 +73,18 @@ const AppLayout = () => {
   
   return (
     <>
-    <Usercontext.Provider value={{user:user_,
-    setUser:setUser_}}> 
-    <div className="app">
-      <Header />
-      <Outlet/>
-      <Footer />
-    </div>
-    </Usercontext.Provider>
+      <Usercontext.Provider value={{user:user_,
+      setUser:setUser_}}> 
+      <div className="app">
+        <Header />
+        <Outlet/>
+        <Footer />
+      </div>
+      </Usercontext.Provider>
     </>
   )
 }
-// this createBrowserRouter needs to configure in the form array of objects
+// this createBrowserRouter needs to configure in the form of array of objects
 // objects means defining routes
 const appRouter = createBrowserRouter([
   {
